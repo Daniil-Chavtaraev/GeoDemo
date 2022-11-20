@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1 class="display-6">All Sites</h1>
+
+<div>
+    <div>
+        {% for site in sites %}
+            <div>
+                <h4><a href="{% url 'site' site.id %}">{{ site.title }} -- {{ site.id }}</a></h4>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

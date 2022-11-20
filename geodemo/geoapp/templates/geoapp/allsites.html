@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <h1 class="display-6">All Sites</h1>
+        <div>
+        {% for site in sites %}
+            <div>
+                <h4><a href="{% url 'site' site.id %}">{{ site.title }}</a></h4>
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+    <div class="col-1"></div>
+  </div>
+
+{% endblock %}

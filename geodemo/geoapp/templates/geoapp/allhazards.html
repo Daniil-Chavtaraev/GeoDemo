@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <h1 class="display-6">All Hazards</h1>
+        <div>
+        {% for hazard in hazards %}
+            <div>
+                <h4><a href="{% url 'hazard' hazard.id %}">{{ hazard.title }}</a></h4>
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+    <div class="col-1"></div>
+  </div>
+{% endblock %}

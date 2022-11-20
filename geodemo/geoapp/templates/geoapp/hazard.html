@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load leaflet_tags %}
+
+{% block headlinks %}
+<link rel="stylesheet" href="{% static 'geoapp/css/siteStyle.css' %}">
+
+{% leaflet_js %}
+{% leaflet_css %}
+
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <h1 class="display-6">{{ hazard }}</h1>
+        <div>
+        {% leaflet_map "map" callback="window.map_init_basic" %}
+    </div>
+    </div>
+    <div class="col-2"></div>
+  </div>
+
+
+<script>
+    var pts_safe = {{ pts|safe }};
+    function map_init_basic (map, options) {
+        map.setZoom(9);
+        var ptsLayer = L.geoJSON().bindPopup(pts_safe.features[0].properties.title).addTo(map);
+        ptsLayer.addData(pts_safe)
+        map.panTo(new L.LatLng(pts_safe.features[0].geometry.coordinates[1], pts_safe.features[0].geometry.coordinates[0]));
+    }
+</script>
+
+
+{% endblock %}
